@@ -1,22 +1,27 @@
 import matplotlib.pyplot as mplot
 import numpy as np
-from sklearn import metrics
+import newton_cotes as nc
 import approximation as app
 
-def draw_functions(lower_range: float, upper_range: float, function, factors: [], n: int):
+
+def draw_functions(lower_range: float, upper_range: float, function, factors):
     axes = mplot.figure().subplots()
     x = np.linspace(lower_range, upper_range, 100)
     y = []
     app_y = []
     for i in x:
         y.append(function(i))
-     #   app_y.append((app.polynomial_value(n, i, factors)))
+        app_y.append(app.calculate_approximated_polynomial(i, lower_range, upper_range, factors))
 
     axes.plot(x, y, color="red", label="Original function")
     axes.plot(x, app_y, color="blue", label="Approximated function")
 
-    r2 = round(100 * metrics.r2_score(y, app_y))
-    mplot.title("Dokładność interpolacji: " + str(r2))
+    def approximated(t): return app.calculate_approximated_polynomial(t, lower_range, upper_range, factors)
+    def error_function(t): return abs(function(t) - approximated(t))
+
+    error = nc.newton_cotes(error_function, lower_range, upper_range, 0.000001)
+
+    mplot.title("Błąd aproksymacji: " + str(error))
     axes.set_xlabel('X')
     axes.set_ylabel('Y')
 

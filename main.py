@@ -10,9 +10,9 @@ def main():
                         "2. Absolute x: |x|\n"
                         "3. Polynomial: 2x^3 + 2x^2 + 4x - 1\n"
                         "4. Trigonometric: sin(1/x)\n"
-                        "5. Composite #1: (2x + 3)|x|\n"
+                        "5. Composite #1: (2x + 3)^|x|\n"
                         "6. Composite #2: (2x + 3)(2x^3 + 2x^2 + 4x - 1)\n"
-                        "7. Composite #3: sin(x)^|x|"))
+                        "7. Composite #3: sin(x)*|x|\n"))
         match fun:
             case 1:
                 fun = func.linear
@@ -39,9 +39,8 @@ def main():
         u_range = pom
 
     degree = int(input("Podaj stopień wielomianu: "))
-    node_number = int(input("Podaj liczbę węzłów: "))
-    #factors = app.approximation_factors(fun, l_range, u_range, node_number)
-    #draw.draw_functions(l_range, u_range, fun, factors, degree)
+    factors = app.calculate_factors(fun, degree, l_range, u_range, .00001)
+    draw.draw_functions(l_range, u_range, fun, factors)
 
 
 if __name__ == '__main__':

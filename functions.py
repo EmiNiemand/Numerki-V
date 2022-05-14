@@ -14,11 +14,13 @@ def polynomial(x):
 
 
 def trigonometric(x):
+    if x == 0:
+        return 0
     return sin(1/x)
 
 
 def composite_1(x):
-    return (2 * x + 3) * abs(x)
+    return (2 * x + 3) ** abs(x)
 
 
 def composite_2(x):
@@ -26,5 +28,5 @@ def composite_2(x):
 
 
 def composite_3(x):
-    return sin(x) ** abs(x)
+    return sin(x) * abs(x)
 
