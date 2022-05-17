@@ -2,6 +2,7 @@ import functions as func
 import approximation as app
 import draw
 
+
 def main():
     fun = None
     while fun is None:
@@ -39,8 +40,10 @@ def main():
         u_range = pom
 
     degree = int(input("Podaj stopień wielomianu: "))
-    factors = app.calculate_factors(fun, degree, l_range, u_range, .00001)
-    draw.draw_functions(l_range, u_range, fun, factors)
+    accuracy = float(input("Podaj dokładność: "))
+    l_args = app.legendre_calculate_arguments(degree)
+    factors = app.calculate_factors(fun, degree, l_range, u_range, accuracy, l_args)
+    draw.draw_functions(l_range, u_range, fun, factors, l_args)
 
 
 if __name__ == '__main__':

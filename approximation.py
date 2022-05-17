@@ -9,40 +9,52 @@ def horner(x, arguments):
     return result
 
 
-def legendre_polynomial(x: float, degree: int):
-    previous_p = 1
-    p = x
+def legendre_calculate_arguments(degree: int) -> list[list[float]]:
+    arguments = legendre_calculate_new_arguments()
+    for i in range(degree):
+        arguments = legendre_calculate_new_arguments(arguments)
 
-    if degree == 0:
-        return previous_p
-    elif degree == 1:
-        return p
-
-    for n in range(1, degree):
-        next_p = ((2 * n + 1) / (n + 1) * x * p) - (n / (n + 1) * previous_p)
-        previous_p = p
-        p = next_p
-
-    return p
+    for j in range(len(arguments)):
+        arguments[j] = list(reversed(arguments[j]))
+    return arguments
 
 
-def calculate_approximated_polynomial(x: float, l_range: float, u_range: float, args: []):
+def legendre_calculate_new_arguments(arguments: list[list[float]] = None) -> [list[list[float]]]:
+    if arguments is None:
+        return [[1.]]
+    if len(arguments) == 1:
+        arguments.append([0., 1.])
+        return arguments
+
+    degree = len(arguments)
+    arguments.append([0. for _ in range(degree + 1)])
+
+    for j in range(1, degree + 1):
+        arguments[degree][j] = (2 * degree - 1) / degree * arguments[degree - 1][j - 1]
+
+    for j in range(degree - 1):
+        arguments[degree][j] -= (degree - 1) / degree * arguments[degree - 2][j]
+
+    return arguments
+
+
+def calculate_polynomial(x: float, l_range: float, u_range: float, args: [], l_args):
     result = 0
     n = 0
     for argument in args:
-        result += argument * legendre_polynomial(transform_x(x, l_range, u_range), n)
+        result += argument * horner(transform_x(x, l_range, u_range), l_args[n])
         n += 1
 
     return result
 
 
-def calculate_factors(function, degree: int, l_range: float, u_range: float, accuracy: float):
+def calculate_factors(function, degree: int, l_range: float, u_range: float, accuracy: float, l_args):
     result = []
     for k in range(degree):
 
         def new_function(t):
             x = transform_t(t, l_range, u_range)
-            return function(x) * legendre_polynomial(t, k)
+            return function(x) * horner(t, l_args[k])
 
         factor = (2 * k + 1) / 2
         polynomial_factor = factor * newton_cotes(new_function, -1, 1, accuracy)
