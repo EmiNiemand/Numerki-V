@@ -9,7 +9,7 @@ def horner(x, arguments):
     return result
 
 
-def legendre_calculate_arguments(degree: int) -> list[list[float]]:
+def legendre_calculate_arguments(degree: int):
     arguments = legendre_calculate_new_arguments()
     for i in range(degree):
         arguments = legendre_calculate_new_arguments(arguments)
@@ -19,7 +19,7 @@ def legendre_calculate_arguments(degree: int) -> list[list[float]]:
     return arguments
 
 
-def legendre_calculate_new_arguments(arguments: list[list[float]] = None) -> [list[list[float]]]:
+def legendre_calculate_new_arguments(arguments: list[list[float]] = None):
     if arguments is None:
         return [[1.]]
     if len(arguments) == 1:
@@ -27,7 +27,7 @@ def legendre_calculate_new_arguments(arguments: list[list[float]] = None) -> [li
         return arguments
 
     degree = len(arguments)
-    arguments.append([0. for _ in range(degree + 1)])
+    arguments.append([0. for i in range(degree + 1)])
 
     for j in range(1, degree + 1):
         arguments[degree][j] = (2 * degree - 1) / degree * arguments[degree - 1][j - 1]

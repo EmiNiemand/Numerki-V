@@ -44,6 +44,84 @@ def main():
     l_args = app.legendre_calculate_arguments(degree)
     factors = app.calculate_factors(fun, degree, l_range, u_range, accuracy, l_args)
     draw.draw_functions(l_range, u_range, fun, factors, l_args)
+    # =====================Tests====================
+    # # Func 1
+    # fun1 = func.linear
+    # l_range = -3
+    # u_range = 5
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 2
+    # fun2 = func.abs_x
+    # l_range = -3
+    # u_range = 5
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 3
+    # fun3 = func.polynomial
+    # l_range = -3
+    # u_range = 5
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 4
+    # fun4 = func.trigonometric
+    # l_range = -3
+    # u_range = 5
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 5
+    # fun5 = func.composite_1
+    # l_range = -1.5
+    # u_range = .5
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 6
+    # fun6 = func.composite_2
+    # l_range = -2
+    # u_range = 1
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
+    # # Func 7
+    # fun7 = func.composite_3
+    # l_range = -5
+    # u_range = 3
+    # degree = 2
+    # accuracy = 0.0001
+    # for i in range(4):
+    #     l_args = app.legendre_calculate_arguments(degree)
+    #     factors = app.calculate_factors(fun1, degree, l_range, u_range, accuracy, l_args)
+    #     draw.draw_functions(l_range, u_range, fun1, factors, l_args)
+    #     degree *= 2
 
 
 if __name__ == '__main__':
