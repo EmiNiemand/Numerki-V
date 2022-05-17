@@ -27,14 +27,17 @@ def legendre_calculate_new_arguments(arguments: list[list[float]] = None):
         return arguments
 
     degree = len(arguments)
-    arguments.append([0. for i in range(degree + 1)])
+    arguments.append([0. for _ in range(degree + 1)])
 
-    for j in range(1, degree + 1):
-        arguments[degree][j] = (2 * degree - 1) / degree * arguments[degree - 1][j - 1]
+    arguments[degree][-1] = (2 * (degree - 1) + 1) / ((degree - 1) + 1) * arguments[degree - 1][-1]
+    arguments[degree][0] = -1 * (degree - 1) / ((degree - 1) + 1) * arguments[degree - 2][0]
 
-    for j in range(degree - 1):
-        arguments[degree][j] -= (degree - 1) / degree * arguments[degree - 2][j]
+    if arguments[degree][0] == -0.:
+        arguments[degree][0] = 0.
 
+    for i in range(1, degree - 1):
+        arguments[degree][i] = (2 * (degree - 1) + 1) / ((degree - 1) + 1) * arguments[degree - 1][i - 1] - \
+                               (degree - 1) / ((degree - 1) + 1) * arguments[degree - 2][i]
     return arguments
 
 
